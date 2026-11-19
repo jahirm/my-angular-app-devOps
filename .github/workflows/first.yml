@@ -1,23 +1,21 @@
-name: "first workflow"
-on: 
-    push:
-    pull_request:
-        branches:
-            - main
-            - dev
-            - qa
+name: "First Workflow"
+on: push
 jobs:
-    first-job:
-        runs-on: windows-latest
+    job1: 
+        runs-on: window-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-              with:
+            - name: Checkout on VM
+              uses: actions/checkout@v4
+
+            - name: setup node
+              uses: actions/setup-node@v4
+              with: 
                 node-version: 24
-                cache: "npm"
+                cache: npm
 
             - name: install dependencies
-              run: npm ci
-              
-            - name: make angular build
-              run: npm run build
+              run:  npm ci 
+
+            - name: make build
+              run: npm run build  
+
